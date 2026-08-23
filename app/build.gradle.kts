@@ -30,18 +30,6 @@ android {
     buildFeatures {
         buildConfig = true
     }
-    signingConfigs {
-        create("shared") {
-            enableV1Signing = true
-            enableV2Signing = true
-            enableV3Signing = true
-
-            storeFile = rootDir.resolve("buildKey.jks")
-            keyAlias = "UntrustedKey"
-            storePassword = "123456"
-            keyPassword = "123456"
-        }
-    }
     packaging {
         jniLibs.useLegacyPackaging = true
         resources.excludes.addAll(
@@ -61,7 +49,6 @@ android {
         debug {
             isMinifyEnabled = false
             isDebuggable = true
-            signingConfig = signingConfigs.getByName("shared")
         }
         release {
             isMinifyEnabled = true
@@ -71,7 +58,6 @@ android {
                 "proguard-rules.pro"
             )
             isDebuggable = false
-            signingConfig = signingConfigs.getByName("shared")
         }
     }
     compileOptions {
